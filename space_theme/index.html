@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Space Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- The canvas for the background space effect -->
+    <canvas id="space-canvas"></canvas>
+
+    <!-- Main Title -->
+    <div class="ui-container title-container">
+        <h1 class="glitch" data-text="JUST DO IT">JUST DO IT</h1>
+    </div>
+
+    <!-- Timer Overlay -->
+    <div class="ui-container timer-container">
+        <div id="timer-display">15:00</div>
+        <div class="timer-controls">
+            <div class="input-group">
+                <input type="number" id="timer-input" value="15" min="1" max="999">
+                <span>Phút</span>
+            </div>
+            <button id="start-btn">Bắt Đầu</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
