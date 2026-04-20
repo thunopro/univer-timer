@@ -5,6 +5,9 @@ const ctx = canvas.getContext('2d');
 const timerDisplay = document.getElementById('timer-display');
 const timerInput = document.getElementById('timer-input');
 const startBtn = document.getElementById('start-btn');
+const videoOverlay = document.getElementById('video-overlay');
+const alarmVideo = document.getElementById('alarm-video');
+const closeVideoBtn = document.getElementById('close-video');
 
 let timerInterval;
 let remainingTime = parseInt(timerInput.value) * 60;
@@ -23,6 +26,9 @@ startBtn.addEventListener('click', () => {
     
     if (isNaN(inputVal) || inputVal <= 0) return;
     
+    // Pre-load/Unlock video for mobile/modern browsers
+    alarmVideo.load();
+    
     remainingTime = inputVal * 60;
     updateDisplay(remainingTime);
     
@@ -35,10 +41,23 @@ startBtn.addEventListener('click', () => {
             remainingTime = 0;
             updateDisplay(remainingTime);
             startBtn.textContent = 'Hết Giờ!';
+            
+            // Play the video alarm
+            videoOverlay.style.display = 'flex';
+            alarmVideo.play().catch(err => {
+                console.error("Video play failed:", err);
+            });
         } else {
             updateDisplay(remainingTime);
         }
     }, 1000);
+});
+
+// Close video logic
+closeVideoBtn.addEventListener('click', () => {
+    videoOverlay.style.display = 'none';
+    alarmVideo.pause();
+    alarmVideo.currentTime = 0;
 });
 
 
